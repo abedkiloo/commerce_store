@@ -2,7 +2,6 @@ import Counter from "./counter";
 import React, {Component} from "react";
 
 export default class Counters extends Component {
-
     state = {
         counters: [
             {id: 1, value: 0},
@@ -14,6 +13,11 @@ export default class Counters extends Component {
 
     };
 
+    constructor(props) {
+        super(props);
+        this.handleDelete = this.handleDelete.bind(this)
+    }
+
     render() {
         return (
             <div>
@@ -22,12 +26,19 @@ export default class Counters extends Component {
                         counter =>
                             <Counter
                                 key={counter.id}
-                                initial_count_value={counter.value}>
+                                onDelete={this.handleDelete}
+                                counter={counter}>
                                 <h4>Counter : #{counter.value}</h4>
                             </Counter>
                     )
                 }
             </div>
         )
+    }
+
+    handleDelete(id) {
+        const counters = this.state.counters.filter(counter => counter.id !== id);
+        this.setState({counters: counters})
+
     }
 }
