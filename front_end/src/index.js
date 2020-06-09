@@ -4,12 +4,15 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Counters  from './Components/counters'
+import {Provider} from 'react-redux'
+import store from './Store/store'
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Counters/>
-    </React.StrictMode>,
+    <Provider store={store}>
+        <React.StrictMode>
+            <App/>
+        </React.StrictMode>
+    </Provider>,
     document.getElementById('root')
 );
 
