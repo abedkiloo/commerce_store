@@ -5,13 +5,6 @@ import store from './Store/store'
 import Posts from "./Components/Posts/Posts";
 
 class App extends Component {
-
-
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
         return (
             <Provider store={store}>

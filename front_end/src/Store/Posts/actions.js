@@ -1,10 +1,15 @@
-import {FETCH_POSTS, NEW_POST} from './actionTypes'
+import {FETCH_POSTS} from './actionTypes'
 
 export const fetchPosts = () => dispatch => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(posts => dispatch({
-            type: FETCH_POSTS,
-            payload: posts
-        }))
+        return JsonplaceHolderService.getPosts()
+        .then(posts =>
+            dispatch({
+                type: FETCH_POSTS,
+                payload: posts
+            })
+        );
+};
+
+export const createPosts=()=>{
+
 }

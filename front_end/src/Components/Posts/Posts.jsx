@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import {fetchPosts} from "../../Store/Posts/actions";
 
 class Posts extends Component {
-    componentWillUnmount() {
+    componentDidMount() {
         this.props.fetchPosts();
     }
 
@@ -19,17 +19,19 @@ class Posts extends Component {
                 <h2>POSTS</h2>
                 {postItems}
             </div>
+
         )
 
     }
 
+
 }
 
-PropsTypes.types = {
+Posts.propTypes = {
     fetchPosts: PropsTypes.func.isRequired,
-    posts:PropsTypes.array.isRequired
+    posts: PropsTypes.array.isRequired
 };
 const mapStateToProps = state => ({
     posts: state.posts.items
 });
-export default connect(mapStateToProps(), {fetchPosts})(Posts)
+export default connect(mapStateToProps, {fetchPosts})(Posts)
