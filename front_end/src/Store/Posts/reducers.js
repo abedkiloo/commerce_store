@@ -1,4 +1,4 @@
-import {FETCH_POSTS} from './actionTypes'
+import {FETCH_POSTS, NEW_POST} from './actionTypes'
 
 
 const initialState = {
@@ -6,13 +6,18 @@ const initialState = {
     item: {},
 };
 
-export function postsReducer(state = initialState, action={}) {
+export function postsReducer(state = initialState, action = {}) {
 
     switch (action.type) {
         case FETCH_POSTS:
             return {
                 ...state,
                 items: action.payload
+            };
+        case NEW_POST:
+            return {
+                ...state,
+                item: action.payload
             };
         default:
             return state

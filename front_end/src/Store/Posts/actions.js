@@ -1,7 +1,8 @@
-import {FETCH_POSTS} from './actionTypes'
+import JsonplaceHolderService from "../../Services/JsonplaceHolderService";
+import {FETCH_POSTS, NEW_POST} from './actionTypes'
 
 export const fetchPosts = () => dispatch => {
-        return JsonplaceHolderService.getPosts()
+    return JsonplaceHolderService.getPosts()
         .then(posts =>
             dispatch({
                 type: FETCH_POSTS,
@@ -10,6 +11,13 @@ export const fetchPosts = () => dispatch => {
         );
 };
 
-export const createPosts=()=>{
-
-}
+export const createPosts = postData => dispatch => {
+    return JsonplaceHolderService.createPosts(postData)
+        .then(post => {
+                dispatch({
+                    type: NEW_POST,
+                    payload: post
+                })
+            }
+        )
+};

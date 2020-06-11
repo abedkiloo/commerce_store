@@ -1,5 +1,5 @@
 class JsonplaceHolderService {
-    static getPosts() {
+    static getPosts = () => {
         const url = "https://jsonplaceholder.typicode.com/posts";
         const request = {
             method: "GET"
@@ -9,9 +9,9 @@ class JsonplaceHolderService {
         }).catch(error => {
             throw(error)
         })
-    }
+    };
 
-    static createPosts(postData) {
+    static createPosts = postData => {
         const url = 'https://jsonplaceholder.typicode.com/posts';
 
         const request = {
@@ -21,9 +21,14 @@ class JsonplaceHolderService {
             body: JSON.stringify(postData)
         };
 
-        return fetch(url, request).then(response => response.json())
+        return fetch(url, request).then(response => {
+            console.log(response)
+          return   response.json()
+        })
             .catch(error => {
                 throw(error)
             })
     }
 }
+
+export default JsonplaceHolderService

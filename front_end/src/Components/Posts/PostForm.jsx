@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {createPosts} from "../../Store/Posts/actions";
 
 class PostForm extends Component {
     constructor(props) {
@@ -51,18 +52,19 @@ class PostForm extends Component {
             title: this.state.title,
             body: this.state.body
         };
-        this.props.createPost(post)
+        this.props.createPosts(post)
     }
 
     onChange(event) {
         this.setState({
-            [event.target]: e.target.value
+            [event.target.name]: event.target.value
         })
     }
+
 }
 
 PostForm.propType = {
-    createPost: PropTypes.func.required
-}
+    createPosts: PropTypes.func.isRequired
+};
 
-export default connect(null, {createPost})(PostForm)
+export default connect(null, {createPosts})(PostForm)
